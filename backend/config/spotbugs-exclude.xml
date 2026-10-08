@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Persistence records are populated by MyBatis and intentionally expose mutable JavaBean accessors. -->
+    <Match>
+        <Package name="~com\.railway\.security\.persistence\..*"/>
+    </Match>
+    <!-- Spring and MapStruct own the lifecycle of generated/configuration classes. -->
+    <Match>
+        <Class name="~.*(Controller|Config|DtoMapperImpl)$"/>
+    </Match>
+</FindBugsFilter>

@@ -1,0 +1,153 @@
+spring:
+  application:
+    name: railway-security-check
+  servlet:
+    multipart:
+      max-file-size: ${app.upload.max-file-size:5GB}
+      max-request-size: ${app.upload.max-request-size:5121MB}
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    validate-on-migrate: true
+    clean-disabled: true
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: Asia/Shanghai
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2s
+  rabbitmq:
+    host: ${RABBITMQ_HOST:127.0.0.1}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    ssl:
+      enabled: ${RABBITMQ_SSL_ENABLED:false}
+    listener:
+      simple:
+        default-requeue-rejected: false
+  ai:
+    retry:
+      max-attempts: 1
+    model:
+      chat: ollama
+      embedding: ollama
+    ollama:
+      base-url: ${AI_OLLAMA_URL:http://127.0.0.1:11434}
+      chat:
+        options:
+          model: ${AI_CHAT_MODEL:qwen2.5:7b}
+          temperature: 0.0
+          num-predict: 512
+          num-ctx: 4096
+      embedding:
+        options:
+          model: ${AI_EMBED_MODEL:bge-m3}
+    vectorstore:
+      qdrant:
+        host: ${AI_QDRANT_HOST:127.0.0.1}
+        port: ${AI_QDRANT_GRPC_PORT:6334}
+        collection-name: ${AI_QDRANT_COLLECTION:railway_policy}
+        initialize-schema: ${AI_QDRANT_INIT_SCHEMA:false}
+
+management:
+  server:
+    address: ${MANAGEMENT_ADDRESS:127.0.0.1}
+    port: ${MANAGEMENT_PORT:8081}
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+      base-path: /internal/actuator
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  health:
+    redis:
+      enabled: ${APP_REDIS_ENABLED:false}
+    rabbit:
+      enabled: ${FILE_QUEUE_ENABLED:false}
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    include-message: never
+    include-stacktrace: never
+
+app:
+  ai:
+    enabled: ${APP_AI_ENABLED:false}
+    max-document-bytes: 20971520
+    max-text-chars: 20000
+    model-timeout-seconds: 120
+    similarity-threshold: ${AI_SIMILARITY_THRESHOLD:0.55}
+    qdrant-http-port: ${AI_QDRANT_HTTP_PORT:6333}
+    qdrant-api-key: ${AI_QDRANT_API_KEY:}
+    ocr-executable: ${AI_OCR_EXECUTABLE:tesseract}
+  redis:
+    enabled: ${APP_REDIS_ENABLED:false}
+  jwt:
+    secret: ${JWT_SECRET}
+    access-expire-minutes: ${JWT_ACCESS_EXPIRE:120}
+    refresh-expire-days: ${JWT_REFRESH_EXPIRE:7}
+    refresh-cookie-secure: ${JWT_COOKIE_SECURE:true}
+  upload:
+    path: ${UPLOAD_PATH:./data/uploads}
+    object-store:
+      enabled: ${FILE_OBJECT_STORE_ENABLED:false}
+      endpoint: ${S3_ENDPOINT:http://127.0.0.1:9000}
+      access-key: ${S3_ACCESS_KEY:}
+      secret-key: ${S3_SECRET_KEY:}
+      bucket: ${S3_BUCKET:railway-attachments}
+    queue:
+      enabled: ${FILE_QUEUE_ENABLED:false}
+    async-scan:
+      enabled: ${FILE_ASYNC_SCAN_ENABLED:true}
+      interval-ms: ${FILE_SCAN_INTERVAL_MS:5000}
+    allowed-extensions: mp4,mov,avi,jpg,jpeg,png,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar,7z
+    antivirus:
+      enabled: ${FILE_ANTIVIRUS_ENABLED:true}
+      host: ${CLAMAV_HOST:127.0.0.1}
+      port: ${CLAMAV_PORT:3310}
+      timeout-millis: ${CLAMAV_TIMEOUT_MILLIS:3600000}
+  statistics:
+    cache:
+      ttl-seconds: ${STATISTICS_CACHE_TTL_SECONDS:300}
+  captcha-enabled: false
+
+knife4j:
+  enable: ${KNIFE4J_ENABLED:false}
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

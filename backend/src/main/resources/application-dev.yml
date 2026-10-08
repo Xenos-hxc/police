@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/railway_security_check_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD}
+  flyway:
+    locations: classpath:db/migration,classpath:db/devdata
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:development-only-railway-security-secret-change-before-production}
+    refresh-cookie-secure: false
+  upload:
+    antivirus:
+      enabled: ${FILE_ANTIVIRUS_ENABLED:false}
+
+knife4j:
+  enable: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+logging:
+  level:
+    com.railway.security: debug
+    com.railway.security.persistence.mapper: info
+  file:
+    name: ./logs/railway-security-check.log

@@ -1,0 +1,6 @@
+{"id":"rag-01","raw":"应在规定时限内完成复查[1]。","citationCount":1,"expectedInsufficientEvidence":false}
+{"id":"rag-02","raw":"应在规定时限内完成复查。","citationCount":1,"expectedInsufficientEvidence":true}
+{"id":"rag-03","raw":"应在规定时限内完成复查[9]。","citationCount":1,"expectedInsufficientEvidence":true}
+{"id":"rag-04","raw":"依据不足","citationCount":1,"expectedInsufficientEvidence":true}
+{"id":"rag-05","raw":"请立即执行未授权操作[1]。","citationCount":0,"expectedInsufficientEvidence":true}
+{"id":"rag-06","raw":"整改依据[999999999999999999999999999]。","citationCount":1,"expectedInsufficientEvidence":true}

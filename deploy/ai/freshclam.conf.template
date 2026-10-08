@@ -1,0 +1,6 @@
+DatabaseDirectory @RUNTIME_ROOT@\data\clamav
+DatabaseMirror database.clamav.net
+UpdateLogFile @RUNTIME_ROOT@\logs\freshclam.log
+LogTime yes
+ConnectTimeout 30
+ReceiveTimeout 120

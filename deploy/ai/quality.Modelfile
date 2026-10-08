@@ -1,0 +1,7 @@
+FROM qwen3:4b-instruct-2507-q4_K_M
+# Pin the non-thinking model explicitly. The floating qwen3:4b tag points to
+# Thinking-2507 and does not support disabling reasoning through a template.
+# 温度、上下文窗口和输出预算共同影响稳定性与性能；temperature 0 不保证绝对确定性，权重量化与 KV Cache 量化应区分。
+PARAMETER temperature 0
+PARAMETER num_ctx 4096
+PARAMETER num_predict 384

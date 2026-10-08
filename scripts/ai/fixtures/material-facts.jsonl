@@ -1,0 +1,8 @@
+{"id":"qc-01","text":"检查笔录 受检单位：示例派出所 检查日期：2026年9月30日","uploadedType":"RECORD","expectedUnit":"示例派出所","expected":{"category":"RECORD","date":"2026年9月30日","unit":"示例派出所","missingItems":[]}}
+{"id":"qc-02","text":"检查笔录 受检单位：示例派出所","uploadedType":"RECORD","expectedUnit":"示例派出所","expected":{"category":"RECORD","date":null,"unit":"示例派出所","missingItems":["材料日期"]}}
+{"id":"qc-03","text":"责令改正通知书 受检单位：示例派出所 2026-09-30","uploadedType":"RECORD","expectedUnit":"示例派出所","expected":{"category":"NOTICE","date":"2026-09-30","unit":"示例派出所","missingItems":["材料类别与上传选项不一致，请人工核对"]}}
+{"id":"qc-04","text":"隐患问题清单 2026/09/30","uploadedType":"HAZARD_MATERIAL","expectedUnit":"示例派出所","expected":{"category":"HAZARD_MATERIAL","date":"2026/09/30","unit":null,"missingItems":["受检单位"]}}
+{"id":"qc-05","text":"没有可识别的标题和日期","uploadedType":"PHOTO","expectedUnit":"示例派出所","expected":{"category":"UNKNOWN","date":null,"unit":null,"missingItems":["材料日期","受检单位","材料类别无法可靠识别，请人工确认"]}}
+{"id":"qc-06","text":"检查记录 示例派出所 2026.9.30","uploadedType":"OTHER","expectedUnit":"示例派出所","expected":{"category":"RECORD","date":"2026.9.30","unit":"示例派出所","missingItems":["材料类别与上传选项不一致，请人工核对"]}}
+{"id":"qc-07","text":"责令改正通知书","uploadedType":"NOTICE","expectedUnit":"示例派出所","expected":{"category":"NOTICE","date":null,"unit":null,"missingItems":["材料日期","受检单位"]}}
+{"id":"qc-08","text":"普通附件 2026年12月1日 示例派出所","uploadedType":"OTHER","expectedUnit":"示例派出所","expected":{"category":"UNKNOWN","date":"2026年12月1日","unit":"示例派出所","missingItems":["材料类别无法可靠识别，请人工确认"]}}

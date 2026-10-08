@@ -1,0 +1,23 @@
+[Unit]
+Description=Railway Security Check Management System
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=railway
+Group=railway
+WorkingDirectory=/opt/railway-security-check/app
+EnvironmentFile=/etc/railway-security-check/railway-security-check.env
+ExecStart=/usr/bin/java -Xms512m -Xmx2048m -XX:+UseG1GC -jar /opt/railway-security-check/app/railway-security-check.jar
+SuccessExitStatus=143
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/railway-security-check/uploads /opt/railway-security-check/logs
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

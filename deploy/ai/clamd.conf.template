@@ -1,0 +1,11 @@
+DatabaseDirectory @RUNTIME_ROOT@\data\clamav
+TemporaryDirectory @RUNTIME_ROOT@\tmp
+LogFile @RUNTIME_ROOT@\logs\clamd.log
+LogTime yes
+TCPSocket 3310
+TCPAddr 127.0.0.1
+MaxThreads 2
+StreamMaxLength 25M
+MaxFileSize 25M
+MaxScanSize 100M
+AlertExceedsMax yes

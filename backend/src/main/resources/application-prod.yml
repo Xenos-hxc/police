@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  servlet:
+    multipart:
+      location: ${UPLOAD_TEMP_PATH:/opt/railway-security-check/uploads/.multipart}
+
+server:
+  forward-headers-strategy: native
+  tomcat:
+    max-http-form-post-size: 20MB
+    max-swallow-size: -1
+
+logging:
+  level:
+    root: info
+    com.railway.security: info
+  file:
+    name: ${LOG_PATH:/opt/railway-security-check/logs}/application.log
+
+knife4j:
+  enable: false
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+app:
+  jwt:
+    refresh-cookie-secure: true
+  upload:
+    antivirus:
+      enabled: true

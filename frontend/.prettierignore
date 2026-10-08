@@ -1,0 +1,7 @@
+dist
+node_modules
+test-results
+playwright-report
+.npm-cache
+vite.out.log
+vite.err.log

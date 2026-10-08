@@ -1,0 +1,23 @@
+# Opt-in local profile: combine with dev. Never points to the original database.
+spring:
+  ai:
+    ollama:
+      chat:
+        options:
+          model: ${AI_CHAT_MODEL:railway-quality:qwen3-4b}
+          num-predict: 384
+          keep-alive: 1m
+      embedding:
+        options:
+          model: bge-m3
+          keep-alive: 0s
+    vectorstore:
+      qdrant:
+        initialize-schema: true
+app:
+  ai:
+    enabled: true
+    ocr-executable: ${AI_OCR_EXECUTABLE:tesseract}
+  upload:
+    antivirus:
+      enabled: true
